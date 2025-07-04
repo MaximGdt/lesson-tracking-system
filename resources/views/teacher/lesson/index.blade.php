@@ -130,17 +130,19 @@
                                             <i class="bi bi-check-circle"></i>
                                         </button>
                                     @else
-                                        <form method="POST" 
-                                              action="{{ route('teacher.lessons.mark-not-conducted', $schedule) }}" 
-                                              class="d-inline">
-                                            @csrf
-                                            <button type="submit" 
-                                                    class="btn btn-sm btn-warning btn-action" 
-                                                    title="Снять отметку"
-                                                    onclick="return confirm('Снять отметку о проведении?');">
-                                                <i class="bi bi-x-circle"></i>
-                                            </button>
-                                        </form>
+                                        @can('mark-lesson', $schedule)
+                                            <form method="POST" 
+                                                  action="{{ route('teacher.lessons.mark-not-conducted', $schedule) }}" 
+                                                  class="d-inline">
+                                                @csrf
+                                                <button type="submit" 
+                                                        class="btn btn-sm btn-warning btn-action" 
+                                                        title="Снять отметку"
+                                                        onclick="return confirm('Снять отметку о проведении?');">
+                                                    <i class="bi bi-x-circle"></i>
+                                                </button>
+                                            </form>
+                                        @endcan
                                     @endif
                                 @endif
                             </div>
@@ -148,48 +150,50 @@
                     </tr>
 
                     <!-- Mark Modal -->
-                    <div class="modal fade" id="markModal{{ $schedule->id }}" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <form method="POST" action="{{ route('teacher.lessons.mark-conducted', $schedule) }}">
-                                    @csrf
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Отметить занятие как проведенное</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="mb-3">
-                                            <label class="form-label">Количество присутствующих студентов</label>
-                                            <input type="number" 
-                                                   name="students_present" 
-                                                   class="form-control" 
-                                                   min="0" 
-                                                   max="{{ $schedule->group->students->count() }}"
-                                                   placeholder="Необязательно">
-                                            <small class="text-muted">
-                                                Всего в группе: {{ $schedule->group->students->count() }} студентов
-                                            </small>
+                    @if(!$schedule->is_cancelled && (!$schedule->lesson || !$schedule->lesson->is_conducted))
+                        <div class="modal fade" id="markModal{{ $schedule->id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form method="POST" action="{{ route('teacher.lessons.mark-conducted', $schedule) }}">
+                                        @csrf
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Отметить занятие как проведенное</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Примечания</label>
-                                            <textarea name="notes" 
-                                                      class="form-control" 
-                                                      rows="3" 
-                                                      placeholder="Необязательно"></textarea>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label class="form-label">Количество присутствующих студентов</label>
+                                                <input type="number" 
+                                                       name="students_present" 
+                                                       class="form-control" 
+                                                       min="0" 
+                                                       max="{{ $schedule->group->students->count() }}"
+                                                       placeholder="Необязательно">
+                                                <small class="text-muted">
+                                                    Всего в группе: {{ $schedule->group->students->count() }} студентов
+                                                </small>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Примечания</label>
+                                                <textarea name="notes" 
+                                                          class="form-control" 
+                                                          rows="3" 
+                                                          placeholder="Необязательно"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                            Отмена
-                                        </button>
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="bi bi-check-circle"></i> Отметить проведенным
-                                        </button>
-                                    </div>
-                                </form>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                Отмена
+                                            </button>
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="bi bi-check-circle"></i> Отметить проведенным
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @empty
                     <tr>
                         <td colspan="8" class="text-center py-4 text-muted">

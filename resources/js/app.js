@@ -1,18 +1,23 @@
 import './bootstrap';
 import Alpine from 'alpinejs';
+import Chart from 'chart.js/auto';
+
+// Make Chart.js available globally
+window.Chart = Chart;
+Chart.start();
 
 // Make Alpine.js available globally
 window.Alpine = Alpine;
 Alpine.start();
 
-// Auto-hide alerts after 5 seconds
+// Auto-hide alerts after 10 seconds
 document.addEventListener('DOMContentLoaded', function() {
     const alerts = document.querySelectorAll('.alert:not(.alert-permanent)');
     alerts.forEach(alert => {
         setTimeout(() => {
             const bsAlert = new bootstrap.Alert(alert);
             bsAlert.close();
-        }, 5000);
+        }, 10000);
     });
 
     // Initialize tooltips

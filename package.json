@@ -17,6 +17,7 @@
     "dependencies": {
         "alpinejs": "^3.14.9",
         "bootstrap": "^5.3.7",
+        "bootstrap-icons": "^1.13.1",
         "chart.js": "^4.5.0",
         "dom-to-pdf": "^0.3.2",
         "fullcalendar": "^6.1.18",
@@ -32,6 +33,6 @@
         "test": "tests"
     },
     "keywords": [],
-    "author": "",
+    "author": "GM",
     "license": "ISC"
 }

@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
                 
             foreach ($teachers as $teacher) {
                 // Send reminder email
-                \Mail::to($teacher->email)->send(new \App\Mail\DailyScheduleReminder($teacher));
+                Mail::to($teacher->email)->send(new \App\Mail\DailyScheduleReminder($teacher));
             }
         })->dailyAt('07:00');
     }

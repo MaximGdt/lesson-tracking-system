@@ -19,6 +19,7 @@ return [
     'no' => 'Ні',
     'confirm_delete' => 'Ви впевнені, що хочете видалити?',
     'no_data' => 'Немає даних',
+    'hello' => 'Привіт',
     
     // Навігація
     'dashboard' => 'Панель управління',
@@ -96,4 +97,15 @@ return [
     'updated_successfully' => ':resource успішно оновлено.',
     'deleted_successfully' => ':resource успішно видалено.',
     'operation_failed' => 'Операція не вдалася.',
+    
+    // Профіль
+    'profile_updated' => 'Профіль успішно оновлено.',
+    'password_changed' => 'Пароль успішно змінено.',
+    'avatar_deleted' => 'Аватар видалено.',
+    
+    // Email
+    'daily_schedule_reminder' => 'Щоденне нагадування про розклад',
+    'no_lessons_today' => 'На сьогодні у вас немає занять.',
+    'your_lessons_today' => 'Ваші заняття на сьогодні',
+    'automatic_notification' => 'Це автоматичне повідомлення.',
 ];

@@ -49,7 +49,7 @@ class LessonController extends Controller
 
         $groups = $teacher->groups;
 
-        return view('teacher.lessons.index', compact('schedules', 'groups'));
+        return view('teacher.lesson.index', compact('schedules', 'groups'));
     }
 
     /**
@@ -150,6 +150,6 @@ class LessonController extends Controller
             ->orderBy('start_time')
             ->get();
 
-        return view('teacher.lessons.today', compact('schedules'));
+        return view('teacher.lesson.today', compact('schedules'));
     }
 }

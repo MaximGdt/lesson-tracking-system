@@ -2,16 +2,35 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
-class Authenticate extends Middleware
+class RedirectIfAuthenticated
 {
     /**
-     * Get the path the user should be redirected to when they are not authenticated.
+     * Handle an incoming request.
      */
-    protected function redirectTo(Request $request): ?string
+    public function handle(Request $request, Closure $next, string ...$guards): Response
     {
-        return $request->expectsJson() ? null : route('login');
+        $guards = empty($guards) ? [null] : $guards;
+
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+                $user = Auth::guard($guard)->user();
+                
+                // Redirect based on role
+                if ($user->isAdmin()) {
+                    return redirect()->route('admin.dashboard');
+                } elseif ($user->isTeacher()) {
+                    return redirect()->route('teacher.dashboard');
+                }
+                
+                return redirect('/');
+            }
+        }
+
+        return $next($request);
     }
 }
