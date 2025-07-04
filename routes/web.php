@@ -12,6 +12,7 @@ use App\Http\Controllers\Teacher\DashboardController as TeacherDashboardControll
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,11 +20,13 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 */
+//Local switching route
+Route::get('/locale/{locale}', [LocaleController::class, 'setLocale'])->name('locale.set');
 
 // Guest routes
-Route::middleware('guest')->group(function () {
+Route::middleware(['guest', 'setlocale'])->group(function () {
     Route::get('/', function () {
-        return redirect()->route('login');
+        return view('welcome');
     })->name('home');
     
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -37,6 +40,7 @@ Route::middleware('auth')->group(function () {
     // Admin routes
     Route::middleware(['role:super_admin,admin'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/',[LoginController::class, 'home'])->name('home');
         
         // Users management
         Route::resource('users', UserController::class);
@@ -73,14 +77,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/schedule/calendar', [TeacherScheduleController::class, 'calendar'])->name('schedule.calendar');
     });
     
-    // Profile routes (for all authenticated users)
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::patch('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
-});
+        // Profile routes (for all authenticated users)
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::patch('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
 
-// API routes for calendar events
-Route::middleware(['auth', 'throttle:api'])->prefix('api')->group(function () {
-    Route::get('/calendar/events', [CalendarController::class, 'events'])->name('api.calendar.events');
-    Route::get('/holidays/{year}', [HolidayController::class, 'index'])->name('api.holidays');
-});
+        
+    });
+
+        // API routes for calendar events
+        Route::middleware(['auth', 'throttle:api'])->prefix('api')->group(function () {
+        Route::get('/calendar/events', [CalendarController::class, 'events'])->name('api.calendar.events');
+        Route::get('/holidays/{year}', [HolidayController::class, 'index'])->name('api.holidays');
+    });

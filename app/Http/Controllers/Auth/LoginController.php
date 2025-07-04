@@ -75,4 +75,16 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+    public function home(Request $request){
+
+        $user = Auth::user();
+
+        if ($user->isAdmin()) {
+            return redirect()->intended('/index.php');
+        } elseif ($user->isTeacher()) {
+            return redirect()->intended('/index.php');
+        }
+
+    }
 }
