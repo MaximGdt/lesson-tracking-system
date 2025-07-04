@@ -14,6 +14,9 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
+        if (auth()->check()) {
+        return redirect()->route('admin.dashboard'); // или на любой дашборд по ролям
+        }
         return view('auth.login');
     }
 

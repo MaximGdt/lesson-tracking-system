@@ -34,5 +34,13 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    
+    'student_api' => [
+    'url' => env('STUDENT_API_URL', 'https://api.example.com'),
+    'key' => env('STUDENT_API_KEY'),
+    ],
 
+    'holidays_api' => [
+    'url' => env('HOLIDAYS_API_URL', 'https://date.nager.at/api/v3/publicholidays/'),
+    ],
 ];

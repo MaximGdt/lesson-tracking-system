@@ -36,6 +36,12 @@ return [
 
     'expire_on_close' => env('SESSION_EXPIRE_ON_CLOSE', false),
 
+    'domain' => null, // или 'lesson-tracking.local'
+
+    'secure' => false, // если не https
+    
+    'same_site' => 'lax', // или 'strict'
+
     /*
     |--------------------------------------------------------------------------
     | Session Encryption
