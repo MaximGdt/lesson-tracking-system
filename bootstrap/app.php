@@ -14,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'role' => \App\Http\Middleware\CheckRole::class,
-            'setlocale' => \App\Http\Middleware\SetLocale::class,
+            'setLocale' => \App\Http\Middleware\SetLocale::class,
             'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         ]);
     })

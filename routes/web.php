@@ -22,15 +22,13 @@ use Illuminate\Support\Facades\Route;
 */
 //Local switching route
 Route::get('/locale/{locale}', [LocaleController::class, 'setLocale'])->name('locale.set');
-
-// Guest routes
-Route::middleware(['guest', 'setlocale'])->group(function () {
-    Route::get('/', function () {
+Route::middleware(['guest', 'setLocale'])->group(function () {
+    Route::get('/', function (){
         return view('welcome');
-    })->name('home');
-    
+    })->name('welcome');
+
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('login', [LoginController::class, 'login']);
 });
 
 // Authenticated routes

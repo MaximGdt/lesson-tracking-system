@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
 
         // Set locale
-        setlocale(LC_TIME, 'uk_UA.UTF-8');
+        setLocale(LC_TIME, 'uk_UA.UTF-8');
         \Carbon\Carbon::setLocale('uk');
     }
 }

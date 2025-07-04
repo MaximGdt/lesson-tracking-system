@@ -13,20 +13,34 @@ class SetLocale
      * Handle an incoming request.
      */
     public function handle(Request $request, Closure $next)
-    {
-        // Check if locale is set in session
-        if (Session::has('locale')) {
-            App::setLocale(Session::get('locale'));
-        } 
-        // Check if user has preferred locale
-        elseif ($request->user() && $request->user()->locale) {
-            App::setLocale($request->user()->locale);
-        }
-        // Default to Ukrainian
-        else {
-            App::setLocale('uk');
-        }
-        
-        return $next($request);
+{
+   
+    
+    $supportedLocales = ['uk', 'en'];
+    
+   
+    if (Session::has('locale')) {
+        $locale = Session::get('locale');
+    } 
+   
+    elseif ($request->user() && $request->user()->locale) {
+        $locale = $request->user()->locale;
+    } 
+    
+    elseif ($request->getPreferredLanguage($supportedLocales)) {
+        $locale = $request->getPreferredLanguage($supportedLocales);
+    } 
+    
+    else {
+        $locale = 'uk';
     }
+
+    // Validate locale
+    $locale = in_array($locale, $supportedLocales) ? $locale : 'uk';
+
+    App::setLocale($locale);
+    Session::put('locale', $locale);
+
+    return $next($request);
+}
 }

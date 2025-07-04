@@ -1,6 +1,7 @@
 import './bootstrap';
 import Alpine from 'alpinejs';
 import Chart from 'chart.js/auto';
+import '.login-animation.js';
 
 // Make Chart.js available globally
 window.Chart = Chart;
@@ -105,4 +106,5 @@ window.initCalendar = function(elementId, events) {
         calendar.render();
         return calendar;
     }
+    
 };
