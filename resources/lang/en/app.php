@@ -6,6 +6,8 @@ return [
     'welcome' => 'Welcome',
     'save' => 'Save',
     'cancel' => 'Cancel',
+    'canceled' => 'Canceled',
+    'no_canceled' => 'No Canceled',
     'delete' => 'Delete',
     'edit' => 'Edit',
     'create' => 'Create',
@@ -19,7 +21,9 @@ return [
     'no' => 'No',
     'confirm_delete' => 'Are you sure you want to delete?',
     'no_data' => 'No data',
-    
+    'personal_info' => 'Personal info',
+    'no_groups' => 'No groups assigned',
+
     // Navigation
     'dashboard' => 'Dashboard',
     'users' => 'Users',
@@ -29,7 +33,10 @@ return [
     'profile' => 'Profile',
     'my_lessons' => 'My Lessons',
     'my_schedule' => 'My Schedule',
-    
+    'interface_language' => 'Interface language',
+    'no_active' => 'No active',
+    'role' => 'Role',
+
     // Users
     'user' => 'User',
     'first_name' => 'First Name',
@@ -42,18 +49,26 @@ return [
     'password_confirmation' => 'Password Confirmation',
     'roles' => 'Roles',
     'last_login' => 'Last Login',
-    
+    'activity' => 'Activity',
+    'register_at' => 'Register at',
+    'last_activity' => 'Last activity',
+    'last_update' => 'Last update',
+    'dont_enter' => 'Don`t enter',
+
     // Groups
     'group' => 'Group',
     'group_code' => 'Group Code',
     'group_name' => 'Group Name',
+    'group_subject' => 'Предмет групи',
+    'teacher_groups' => 'Teacher groups',
     'course' => 'Course',
     'speciality' => 'Specialty',
     'students' => 'Students',
     'teachers' => 'Teachers',
     'start_date' => 'Start Date',
     'end_date' => 'End Date',
-    
+    'planed' => 'Planed',
+
     // Schedule
     'date' => 'Date',
     'time' => 'Time',
@@ -66,7 +81,7 @@ return [
     'lab' => 'Laboratory',
     'exam' => 'Exam',
     'consultation' => 'Consultation',
-    
+
     // Lessons
     'lesson' => 'Lesson',
     'conducted' => 'Conducted',
@@ -76,8 +91,12 @@ return [
     'students_present' => 'Students Present',
     'notes' => 'Notes',
     'marked_at' => 'Marked At',
+    'not_marked' => 'Not marked',
     'marked_by' => 'Marked By',
-    
+    'conducted_in_current_month' => 'Conducted in current month',
+    'total_conducted' => 'Total Conducted',
+    'recently_lessons' => 'Recently Lessons',
+
     // Reports
     'report' => 'Report',
     'generate_report' => 'Generate Report',
@@ -86,7 +105,8 @@ return [
     'export_excel' => 'Export to Excel',
     'export_pdf' => 'Export to PDF',
     'print' => 'Print',
-    
+    'teacher_statistics' => 'Teacher statistics',
+
     // Messages
     'success' => 'Success!',
     'error' => 'Error!',

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -44,7 +45,7 @@ class LoginController extends Controller
             if (!$user->is_active) {
                 Auth::logout();
                 throw ValidationException::withMessages([
-                    'email' => ['Ваш аккаунт деактивирован.'],
+                    'email' => ['Your account is diactivated.'],
                 ]);
             }
 
@@ -57,10 +58,26 @@ class LoginController extends Controller
 
             return redirect()->intended('/');
         }
-
-        throw ValidationException::withMessages([
-            'email' => ['Неверный email или пароль.'],
-        ]);
+            $locale = config('app.locale', 'uk');
+            Session::put('locale', $locale);
+           if ($locale == 'en') {
+             throw ValidationException::withMessages([
+                'email' => ['Wrong email or password.'],
+           
+                ]);
+           } elseif ($locale == 'uk') {
+            throw ValidationException::withMessages([
+                'email' => ['Не вірний email або пароль'],
+            ]);
+           } elseif ($locale == 'ru') {
+            throw ValidationException::withMessages([
+                'email' => ['Не правельный логин или пароль'],
+            ]);
+           }
+        //throw ValidationException::withMessages([
+            //'email' => ['Wrong email or password.'],
+           
+        //]);
     }
 
     /**

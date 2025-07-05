@@ -84,6 +84,26 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="locale" class="form-label">{{ __('app.interface_language') ?? 'Язык интерфейса' }}</label>
+                                <select class="form-select @error('locale') is-invalid @enderror" 
+                                        id="locale" 
+                                        name="locale">
+                                    <option value="uk" {{ old('locale', $user->locale) == 'uk' ? 'selected' : '' }}>
+                                        🇺🇦 Українська
+                                    </option>
+                                    <option value="en" {{ old('locale', $user->locale) == 'en' ? 'selected' : '' }}>
+                                        🇬🇧 English
+                                    </option>
+                                    <option value="ru" {{ old('locale', $user->locale) == 'ru' ? 'selected' : '' }}>
+                                        🇷🇺 Русский
+                                    </option>
+                                </select>
+                            @error('locale')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                     
                     <div class="d-flex justify-content-end">

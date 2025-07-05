@@ -34,5 +34,13 @@
     },
     "keywords": [],
     "author": "GM",
-    "license": "ISC"
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MaximGdt/lesson-tracking-system.git"
+    },
+    "bugs": {
+        "url": "https://github.com/MaximGdt/lesson-tracking-system/issues"
+    },
+    "homepage": "https://github.com/MaximGdt/lesson-tracking-system#readme"
 }

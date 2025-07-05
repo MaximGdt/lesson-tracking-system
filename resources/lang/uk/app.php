@@ -6,6 +6,8 @@ return [
     'welcome' => 'Ласкаво просимо',
     'save' => 'Зберегти',
     'cancel' => 'Скасувати',
+    'canceled' => 'Скасовано',
+    'no_canceled' => 'Не скасовано',
     'delete' => 'Видалити',
     'edit' => 'Редагувати',
     'create' => 'Створити',
@@ -20,7 +22,10 @@ return [
     'confirm_delete' => 'Ви впевнені, що хочете видалити?',
     'no_data' => 'Немає даних',
     'hello' => 'Привіт',
-    
+    'ukrainian' => 'Українська',
+    'english' => 'Англійська',
+    'no_groups' => 'Немає призначених груп',
+
     // Навігація
     'dashboard' => 'Панель управління',
     'users' => 'Користувачі',
@@ -30,8 +35,9 @@ return [
     'profile' => 'Профіль',
     'my_lessons' => 'Мої заняття',
     'my_schedule' => 'Мій розклад',
-    
+
     // Користувачі
+    'personal_info' => 'Особисті данні',
     'user' => 'Користувач',
     'first_name' => 'Ім\'я',
     'last_name' => 'Прізвище',
@@ -43,18 +49,29 @@ return [
     'password_confirmation' => 'Підтвердження пароля',
     'roles' => 'Ролі',
     'last_login' => 'Останній вхід',
-    
+    'interface_language' => 'Мова інтерфейсу',
+    'no_active' => 'Не активний',
+    'role' => 'Ролі',
+    'activity' => 'Активність',
+    'register_at' => 'Зареестрований',
+    'last_activity' => 'Останній вхід',
+    'last_update' => 'Останне оновленя',
+    'dont_enter' => 'Не заходив',
+
     // Групи
     'group' => 'Група',
     'group_code' => 'Код групи',
     'group_name' => 'Назва групи',
+    'group_subject' => 'Предмет групи',
+    'teacher_groups' => 'Групи викладачів',
     'course' => 'Курс',
     'speciality' => 'Спеціальність',
     'students' => 'Студенти',
     'teachers' => 'Викладачі',
     'start_date' => 'Дата початку',
     'end_date' => 'Дата закінчення',
-    
+    'planed' => 'Заплановано',
+
     // Розклад
     'date' => 'Дата',
     'time' => 'Час',
@@ -67,7 +84,7 @@ return [
     'lab' => 'Лабораторна',
     'exam' => 'Екзамен',
     'consultation' => 'Консультація',
-    
+
     // Заняття
     'lesson' => 'Заняття',
     'conducted' => 'Проведено',
@@ -77,8 +94,12 @@ return [
     'students_present' => 'Присутньо студентів',
     'notes' => 'Примітки',
     'marked_at' => 'Відмічено',
+    'not_marked' => 'Не відмічено',
     'marked_by' => 'Відмітив',
-    
+    'conducted_in_current_month' => 'Проведено у цьому місяці',
+    'total_conducted' => 'Усього відмічено',
+    'recently_lessons' => 'Остані заняття',
+
     // Звіти
     'report' => 'Звіт',
     'generate_report' => 'Сформувати звіт',
@@ -87,7 +108,8 @@ return [
     'export_excel' => 'Експорт в Excel',
     'export_pdf' => 'Експорт в PDF',
     'print' => 'Друк',
-    
+    'teacher_statistics' => 'Статистика викладача',
+
     // Повідомлення
     'success' => 'Успішно!',
     'error' => 'Помилка!',
@@ -97,12 +119,12 @@ return [
     'updated_successfully' => ':resource успішно оновлено.',
     'deleted_successfully' => ':resource успішно видалено.',
     'operation_failed' => 'Операція не вдалася.',
-    
+
     // Профіль
     'profile_updated' => 'Профіль успішно оновлено.',
     'password_changed' => 'Пароль успішно змінено.',
     'avatar_deleted' => 'Аватар видалено.',
-    
+
     // Email
     'daily_schedule_reminder' => 'Щоденне нагадування про розклад',
     'no_lessons_today' => 'На сьогодні у вас немає занять.',
