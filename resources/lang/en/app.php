@@ -23,10 +23,21 @@ return [
     'no_data' => 'No data',
     'personal_info' => 'Personal info',
     'no_groups' => 'No groups assigned',
+    'all' => 'All',
+    'reset' => 'Reset',
+    'view' => 'View',
+    'deactivate' => 'Deactivate',
+    'activate' => 'Activate',
+    'enter_in_system' => 'Enter in system',
+    'remember_me' => 'Remember me',
+    'login' => 'Login',
+    'forgot_password' => 'Forgot password?',
+
 
     // Navigation
     'dashboard' => 'Dashboard',
     'users' => 'Users',
+    'users_not_found' => 'No users found',
     'groups' => 'Groups',
     'schedule' => 'Schedule',
     'reports' => 'Reports',
@@ -42,6 +53,7 @@ return [
 
     // Users
     'user' => 'User',
+    'id' => 'ID',
     'first_name' => 'First Name',
     'last_name' => 'Last Name',
     'middle_name' => 'Middle Name',

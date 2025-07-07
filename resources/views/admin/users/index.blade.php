@@ -33,19 +33,19 @@
                 </select>
             </div>
             <div class="col-md-2">
-                <label class="form-label">Статус</label>
+                <label class="form-label">{{__('app.status')}}</label>
                 <select name="status" class="form-select">
-                    <option value="">Все</option>
-                    <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Активные</option>
-                    <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Неактивные</option>
+                    <option value="">{{__('app.all')}}</option>
+                    <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>{{__('app.active')}}</option>
+                    <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>{{__('app.no_active')}}</option>
                 </select>
             </div>
             <div class="col-md-2 d-flex align-items-end">
                 <button type="submit" class="btn btn-primary me-2">
-                    <i class="bi bi-search"></i> Поиск
+                    <i class="bi bi-search"></i> {{__('app.search')}}
                 </button>
                 <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
-                    <i class="bi bi-x"></i> Сброс
+                    <i class="bi bi-x"></i> {{__('app.reset')}}
                 </a>
             </div>
         </form>
@@ -58,14 +58,14 @@
         <table class="table table-hover mb-0">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>ФИО</th>
-                    <th>Email</th>
-                    <th>Телефон</th>
-                    <th>Роли</th>
-                    <th>Статус</th>
-                    <th>Последний вход</th>
-                    <th>Действия</th>
+                    <th>{{__('app.id')}}</th>
+                    <th>{{__('full_name')}}</th>
+                    <th>{{__('app.email')}}</th>
+                    <th>{{__('app.phone')}}</th>
+                    <th>{{__('app.roles')}}</th>
+                    <th>{{__('app.roles')}}</th>
+                    <th>{{__('app.last_login')}}</th>
+                    <th>{{__('app.actions')}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,14 +77,20 @@
                         <td>{{ $user->phone ?? '-' }}</td>
                         <td>
                             @foreach($user->roles as $role)
-                                <span class="badge bg-primary badge-role">{{ $role->display_name }}</span>
+                                @if($role->id == 1)
+                                    <span class="badge bg-primary badge-role">{{__('app.role_super_admin')}}</span>
+                                @elseif($role->id == 2)
+                                    <span class="badge bg-primary badge-role">{{__('app.role_admin')}}</span>
+                                @elseif($role->id == 3)
+                                    <span class="badge bg-primary badge-role">{{__('app.role_teacher')}}</span>
+                                @endif
                             @endforeach
                         </td>
                         <td>
                             @if($user->is_active)
-                                <span class="badge bg-success">Активен</span>
+                                <span class="badge bg-success">{{__('app.active')}}</span>
                             @else
-                                <span class="badge bg-danger">Неактивен</span>
+                                <span class="badge bg-danger">{{__('app.no_active')}}</span>
                             @endif
                         </td>
                         <td>
@@ -98,12 +104,12 @@
                             <div class="btn-group" role="group">
                                 <a href="{{ route('admin.users.show', $user) }}"
                                    class="btn btn-sm btn-info btn-action"
-                                   title="Просмотр">
+                                   title="{{__('app.view')}}">
                                     <i class="bi bi-eye"></i>
                                 </a>
                                 <a href="{{ route('admin.users.edit', $user) }}"
                                    class="btn btn-sm btn-primary btn-action"
-                                   title="Редактировать">
+                                   title="{{__('app.edit')}}">
                                     <i class="bi bi-pencil"></i>
                                 </a>
 
@@ -114,7 +120,7 @@
                                         @csrf
                                         <button type="submit"
                                                 class="btn btn-sm btn-warning btn-action"
-                                                title="{{ $user->is_active ? 'Деактивировать' : 'Активировать' }}">
+                                                title="{{ $user->is_active ? __('app.deactivate') : __('app.activate') }}">
                                             <i class="bi bi-{{ $user->is_active ? 'lock' : 'unlock' }}"></i>
                                         </button>
                                     </form>
@@ -122,12 +128,12 @@
                                     <form method="POST"
                                           action="{{ route('admin.users.destroy', $user) }}"
                                           class="d-inline"
-                                          onsubmit="return confirm('Вы уверены, что хотите удалить этого пользователя?');">
+                                          onsubmit="return confirm('{{__('app.confirm_delete')}}');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
                                                 class="btn btn-sm btn-danger btn-action"
-                                                title="Удалить">
+                                                title="{{__('app.delete')}}">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
@@ -138,7 +144,7 @@
                 @empty
                     <tr>
                         <td colspan="8" class="text-center py-4 text-muted">
-                            Пользователи не найдены
+                            {{__('app.users_not_found')}}
                         </td>
                     </tr>
                 @endforelse

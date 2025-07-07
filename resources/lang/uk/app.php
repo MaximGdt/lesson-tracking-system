@@ -25,10 +25,20 @@ return array(
     'ukrainian' => 'Українська',
     'english' => 'Англійська',
     'no_groups' => 'Немає призначених груп',
+    'all'=> 'Всі',
+    'reset' => 'Скинути',
+    'view' => 'Перегляд',
+    'deactivate' => 'Деактивувати',
+    'activate' => 'Активувати',
+    'enter_in_system' => 'Вхід до системи',
+    'remember_me' => 'Запам\'ятати мене',
+    'login' => 'Увійти',
+    'forgot_password' => 'Забули пароль?',
 
     // Навігація
     'dashboard' => 'Панель управління',
     'users' => 'Користувачі',
+    'users_not_found' => 'Користувачі не знайдені',
     'groups' => 'Групи',
     'schedule' => 'Розклад',
     'reports' => 'Звіти',
@@ -41,6 +51,7 @@ return array(
 
     // Користувачі
     'personal_info' => 'Особисті данні',
+    'id' => 'ID',
     'user' => 'Користувач',
     'first_name' => 'Ім\'я',
     'last_name' => 'Прізвище',
