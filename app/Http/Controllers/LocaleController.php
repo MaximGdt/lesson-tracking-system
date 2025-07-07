@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class LocaleController extends Controller
 {
+
     /**
      * Установить язык интерфейса
      */
@@ -21,7 +22,7 @@ class LocaleController extends Controller
         ]);
 
         $supportedLocales = ['uk', 'en', 'ru'];
-        
+
         if (!in_array($locale, $supportedLocales)) {
             Log::warning('Invalid locale requested', ['locale' => $locale]);
             return redirect()->back();
@@ -30,24 +31,27 @@ class LocaleController extends Controller
         // Устанавливаем локаль в сессию
         Session::put('locale', $locale);
         Session::save(); // Принудительно сохраняем сессию
-        
+
         // Устанавливаем локаль для текущего запроса
         App::setLocale($locale);
-        
+
         // Если пользователь авторизован, сохраняем в БД
         if ($request->user()) {
-            $request->user()->update(['locale' => $locale]);
+           $request->user()->update(['locale' => $locale]);
             Log::info('Locale saved to user', [
                 'user_id' => $request->user()->id,
-                'locale' => $locale
+                'locale' => $locale,
+                'Auth_user' => $request->user(),
+                'Auth_user_2' => auth()->user(),
             ]);
         }
-        
+
         Log::info('Locale changed successfully', [
             'new_locale' => $locale,
             'session_locale_after' => Session::get('locale'),
         ]);
-        
+
         return redirect()->back()->with('success', 'Language changed successfully');
     }
+
 }

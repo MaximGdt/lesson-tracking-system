@@ -1,6 +1,6 @@
 <?php
 
-return [
+return array(
     // Загальні
     'app_name' => 'Система обліку занять',
     'welcome' => 'Ласкаво просимо',
@@ -35,6 +35,9 @@ return [
     'profile' => 'Профіль',
     'my_lessons' => 'Мої заняття',
     'my_schedule' => 'Мій розклад',
+    'add_user' => 'Додати користувача',
+    'all_roles' => 'Усі ролі',
+    'search_bio' => 'Им\'я, призвище, email',
 
     // Користувачі
     'personal_info' => 'Особисті данні',
@@ -51,12 +54,16 @@ return [
     'last_login' => 'Останній вхід',
     'interface_language' => 'Мова інтерфейсу',
     'no_active' => 'Не активний',
-    'role' => 'Ролі',
+    'role' => 'Роль',
     'activity' => 'Активність',
     'register_at' => 'Зареестрований',
     'last_activity' => 'Останній вхід',
     'last_update' => 'Останне оновленя',
     'dont_enter' => 'Не заходив',
+    'role_teacher' => 'Викладач',
+    'role_admin' => 'Адміністратор',
+    'role_super_admin' => 'Суперадміністратор',
+
 
     // Групи
     'group' => 'Група',
@@ -99,6 +106,7 @@ return [
     'conducted_in_current_month' => 'Проведено у цьому місяці',
     'total_conducted' => 'Усього відмічено',
     'recently_lessons' => 'Остані заняття',
+    'no_lessons' => 'Заннять немає',
 
     // Звіти
     'report' => 'Звіт',
@@ -130,4 +138,9 @@ return [
     'no_lessons_today' => 'На сьогодні у вас немає занять.',
     'your_lessons_today' => 'Ваші заняття на сьогодні',
     'automatic_notification' => 'Це автоматичне повідомлення.',
-];
+
+    //Опис
+    'role_super_admin_description' => 'Повний доступ до всіх функцій системи',
+    'role_admin_description'=> 'Управління користувачами, групами та розкладом',
+    'role_teacher_description' => 'Відмітка занять та перегляд розкладу',
+);

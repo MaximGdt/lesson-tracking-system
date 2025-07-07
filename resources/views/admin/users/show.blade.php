@@ -83,9 +83,15 @@
             <div class="card-body">
                 @foreach($user->roles as $role)
                     <div class="mb-2">
-                        <span class="badge bg-primary">{{ $role->display_name }}</span>
-                        @if($role->description)
-                            <br><small class="text-muted">{{ $role->description }}</small>
+                        @if($role->id==1)
+                            <span class="badge bg-primary">{{__('app.role_super_admin')}}</span>
+                            <br><small class="text-muted">{{__('app.role_super_admin_description')}}</small>
+                        @elseif($role->id==2)
+                            <span class="badge bg-primary">{{__('app.role_admin')}}</span>
+                            <br><small class="text-muted">{{__('app.role_admin_description')}}</small>
+                        @elseif($role->id==3)
+                            <span class="badge  bg-primary">{{__('app.role_teacher')}}</span>
+                            <br><small class="text-muted">{{__('app.role_teacher_description')}}</small>
                         @endif
                     </div>
                 @endforeach
@@ -253,7 +259,7 @@
                         </table>
                     </div>
                 @else
-                    <p class="text-muted mb-0">Нет занятий</p>
+                    <p class="text-muted mb-0">{{__('app.no_lessons')}}</p>
                 @endif
             </div>
         </div>

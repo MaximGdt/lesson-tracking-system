@@ -36,6 +36,9 @@ return [
     'interface_language' => 'Interface language',
     'no_active' => 'No active',
     'role' => 'Role',
+    'all_roles' => 'All roles',
+    'add_user' => 'Add user',
+    'search_bio' => 'Name, last name, email',
 
     // Users
     'user' => 'User',
@@ -54,6 +57,9 @@ return [
     'last_activity' => 'Last activity',
     'last_update' => 'Last update',
     'dont_enter' => 'Don`t enter',
+    'role_teacher' => 'Teacher',
+    'role_admin' => 'Administrator',
+    'role_super_admin' => 'Superadministrator',
 
     // Groups
     'group' => 'Group',
@@ -96,6 +102,7 @@ return [
     'conducted_in_current_month' => 'Conducted in current month',
     'total_conducted' => 'Total Conducted',
     'recently_lessons' => 'Recently Lessons',
+    'no_lessons' => 'No lessons',
 
     // Reports
     'report' => 'Report',
@@ -116,4 +123,9 @@ return [
     'updated_successfully' => ':resource updated successfully.',
     'deleted_successfully' => ':resource deleted successfully.',
     'operation_failed' => 'Operation failed.',
+
+    //Description
+    'role_super_admin_description' => 'Full access to all system functions',
+    'role_admin_description'=> 'Manage users, groups and schedules',
+    'role_teacher_description' => 'Marking classes and viewing the schedule',
 ];

@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             HolidaySeeder::class,
+            RolesTableSeeder::class,
         ]);
 
         // Create test data in development
@@ -51,7 +52,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($groups as $groupData) {
             $group = \App\Models\Group::create($groupData);
-            
+
             // Create test students for each group
             for ($i = 1; $i <= 20; $i++) {
                 \App\Models\Student::create([
@@ -88,20 +89,20 @@ class DatabaseSeeder extends Seeder
         // Create test schedules for the current month
         $startDate = now()->startOfMonth();
         $endDate = now()->endOfMonth();
-        
+
         foreach (\App\Models\Group::all() as $group) {
             $groupTeachers = $group->teachers;
-            
+
             for ($date = $startDate->copy(); $date <= $endDate; $date->addDay()) {
                 // Skip weekends
                 if ($date->isWeekend()) {
                     continue;
                 }
-                
+
                 // Create 2-3 lessons per day
                 $lessonsPerDay = rand(2, 3);
                 $startTime = 9; // Start at 9:00
-                
+
                 for ($i = 0; $i < $lessonsPerDay; $i++) {
                     $teacher = $groupTeachers->random();
                     $schedule = \App\Models\Schedule::create([
@@ -114,10 +115,10 @@ class DatabaseSeeder extends Seeder
                         'room' => rand(100, 500),
                         'type' => ['lecture', 'practice', 'lab'][rand(0, 2)],
                     ]);
-                    
+
                     // Create lesson record
                     $lesson = $schedule->lesson()->create(['is_conducted' => false]);
-                    
+
                     // Mark some past lessons as conducted
                     if ($date->isPast() && rand(0, 100) < 80) {
                         $lesson->markAsConducted(
@@ -126,12 +127,12 @@ class DatabaseSeeder extends Seeder
                             rand(15, 20)
                         );
                     }
-                    
+
                     $startTime += 2; // Next lesson starts 2 hours later
                 }
             }
         }
-        
+
         $this->command->info('Test data created successfully!');
     }
 }

@@ -34,6 +34,9 @@ return [
     'profile' => 'Профиль',
     'my_lessons' => 'Мои занятия',
     'my_schedule' => 'Мое расписание',
+    'add_user' => 'Добавить пользователя',
+    'all_roles' => 'Все роли',
+    'search_bio' => 'Имя, фамилия, email',
 
     // Пользователи
     'personal_info' => 'Личная информация',
@@ -50,12 +53,15 @@ return [
     'last_login' => 'Последний вход',
     'interface_language' => 'Язык интерфеса',
     'no_active' => 'Не активный',
-    'role' => 'Роли',
+    'role' => 'Роль',
     'activity' => 'Активность',
     'register_at' => 'Зарегестрирован',
     'last_activity' => 'Последний вход',
     'last_update' => 'Последнее обновление',
     'dont_enter' => 'Не входил',
+    'role_teacher' => 'Преподаватель',
+    'role_admin' => 'Администратор',
+    'role_super_admin' => 'Суперадминистратор',
 
     // Группы
     'group' => 'Группа',
@@ -98,6 +104,7 @@ return [
     'conducted_in_current_month' => 'Проведено в этом месяце',
     'total_conducted' => 'Всего отмечено',
     'recently_lessons' => 'Последние занятия',
+    'no_lessons' => 'Нет занятий',
 
     // Отчеты
     'report' => 'Отчет',
@@ -129,4 +136,9 @@ return [
     'no_lessons_today' => 'На сегодня у вас нет занятий.',
     'your_lessons_today' => 'Ваши занятия на сегодня',
     'automatic_notification' => 'Это автоматическое уведомление.',
+
+    //Описание
+    'role_super_admin_description' => 'Полный доступ ко всем функциям системы',
+    'role_admin_description'=> 'Управление пользователями, группами и расписанием',
+    'role_teacher_description' => 'Отметка занятий и просмотр расписания',
 ];

@@ -4,10 +4,10 @@
 
 @section('content')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Пользователи</h1>
+    <h1 class="h2">{{__('app.users')}}</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Добавить пользователя
+            <i class="bi bi-plus-circle"></i> {{__('app.add_user')}}
         </a>
     </div>
 </div>
@@ -17,17 +17,17 @@
     <div class="card-body">
         <form method="GET" action="{{ route('admin.users.index') }}" class="row g-3">
             <div class="col-md-3">
-                <label class="form-label">Поиск</label>
-                <input type="text" name="search" class="form-control" placeholder="Имя, фамилия, email" 
+                <label class="form-label">{{__('app.search')}}</label>
+                <input type="text" name="search" class="form-control" placeholder="{{__('app.search_bio')}}"
                        value="{{ request('search') }}">
             </div>
             <div class="col-md-2">
-                <label class="form-label">Роль</label>
+                <label class="form-label">{{__('app.role')}}</label>
                 <select name="role" class="form-select">
-                    <option value="">Все роли</option>
+                    <option value="">{{__('app.all_roles')}}</option>
                     @foreach($roles as $role)
                         <option value="{{ $role->name }}" {{ request('role') == $role->name ? 'selected' : '' }}>
-                            {{ $role->display_name }}
+                            {{__('app'.$role->name)}}
                         </option>
                     @endforeach
                 </select>
@@ -96,37 +96,37 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ route('admin.users.show', $user) }}" 
-                                   class="btn btn-sm btn-info btn-action" 
+                                <a href="{{ route('admin.users.show', $user) }}"
+                                   class="btn btn-sm btn-info btn-action"
                                    title="Просмотр">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="{{ route('admin.users.edit', $user) }}" 
-                                   class="btn btn-sm btn-primary btn-action" 
+                                <a href="{{ route('admin.users.edit', $user) }}"
+                                   class="btn btn-sm btn-primary btn-action"
                                    title="Редактировать">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                
+
                                 @if($user->id !== auth()->id())
-                                    <form method="POST" 
-                                          action="{{ route('admin.users.toggle-status', $user) }}" 
+                                    <form method="POST"
+                                          action="{{ route('admin.users.toggle-status', $user) }}"
                                           class="d-inline">
                                         @csrf
-                                        <button type="submit" 
-                                                class="btn btn-sm btn-warning btn-action" 
+                                        <button type="submit"
+                                                class="btn btn-sm btn-warning btn-action"
                                                 title="{{ $user->is_active ? 'Деактивировать' : 'Активировать' }}">
                                             <i class="bi bi-{{ $user->is_active ? 'lock' : 'unlock' }}"></i>
                                         </button>
                                     </form>
-                                    
-                                    <form method="POST" 
-                                          action="{{ route('admin.users.destroy', $user) }}" 
+
+                                    <form method="POST"
+                                          action="{{ route('admin.users.destroy', $user) }}"
                                           class="d-inline"
                                           onsubmit="return confirm('Вы уверены, что хотите удалить этого пользователя?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" 
-                                                class="btn btn-sm btn-danger btn-action" 
+                                        <button type="submit"
+                                                class="btn btn-sm btn-danger btn-action"
                                                 title="Удалить">
                                             <i class="bi bi-trash"></i>
                                         </button>

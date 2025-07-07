@@ -37,7 +37,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             $user = Auth::user();
-            
+
             // Update last login time
             $user->update(['last_login_at' => now()]);
 
@@ -45,7 +45,7 @@ class LoginController extends Controller
             if (!$user->is_active) {
                 Auth::logout();
                 throw ValidationException::withMessages([
-                    'email' => ['Your account is diactivated.'],
+                    'email' => ['Your account is deactivated.'],
                 ]);
             }
 
@@ -63,7 +63,7 @@ class LoginController extends Controller
            if ($locale == 'en') {
              throw ValidationException::withMessages([
                 'email' => ['Wrong email or password.'],
-           
+
                 ]);
            } elseif ($locale == 'uk') {
             throw ValidationException::withMessages([
@@ -74,10 +74,6 @@ class LoginController extends Controller
                 'email' => ['Не правельный логин или пароль'],
             ]);
            }
-        //throw ValidationException::withMessages([
-            //'email' => ['Wrong email or password.'],
-           
-        //]);
     }
 
     /**

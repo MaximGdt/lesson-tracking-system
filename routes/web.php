@@ -36,6 +36,7 @@ Route::get('/test-locale', function () {
     return view('test-locale');
 })->middleware(['web']);
 
+
 // В самом начале файла, перед всеми группами
 Route::get('/test-locale-simple', function () {
     return response()->json([
@@ -75,47 +76,47 @@ Route::middleware(['guest'])->group(function () {
 // Авторизованные маршруты
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-    
+
     // Админские маршруты
     Route::middleware(['role:super_admin,admin'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
         Route::get('/', [LoginController::class, 'home'])->name('home');
-        
+
         // Управление пользователями
         Route::resource('users', UserController::class);
         Route::post('users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
-        
+
         // Управление группами
         Route::resource('groups', GroupController::class);
         Route::post('groups/{group}/sync-students', [GroupController::class, 'syncStudents'])->name('groups.sync-students');
-        
+
         // Управление расписанием
         Route::resource('schedules', ScheduleController::class);
         Route::post('schedules/{schedule}/cancel', [ScheduleController::class, 'cancel'])->name('schedules.cancel');
         Route::post('schedules/bulk-create', [ScheduleController::class, 'bulkCreate'])->name('schedules.bulk-create');
-        
+
         // Отчеты
         Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
         Route::post('reports/generate', [ReportController::class, 'generate'])->name('reports.generate');
         Route::get('reports/export/{type}', [ReportController::class, 'export'])->name('reports.export');
     });
-    
+
     // Маршруты преподавателя
     Route::middleware(['role:teacher,admin,super_admin'])->prefix('teacher')->name('teacher.')->group(function () {
         Route::get('/dashboard', [TeacherDashboardController::class, 'index'])->name('dashboard');
-        
+
         // Занятия
         Route::get('/lessons', [LessonController::class, 'index'])->name('lessons.index');
         Route::get('/lessons/today', [LessonController::class, 'today'])->name('lessons.today');
         Route::get('/lessons/{schedule}', [LessonController::class, 'show'])->name('lessons.show');
         Route::post('/lessons/{schedule}/mark-conducted', [LessonController::class, 'markConducted'])->name('lessons.mark-conducted');
         Route::post('/lessons/{schedule}/mark-not-conducted', [LessonController::class, 'markNotConducted'])->name('lessons.mark-not-conducted');
-        
+
         // Расписание
         Route::get('/schedule', [TeacherScheduleController::class, 'index'])->name('schedule');
         Route::get('/schedule/calendar', [TeacherScheduleController::class, 'calendar'])->name('schedule.calendar');
     });
-    
+
     // Маршруты профиля (для всех авторизованных пользователей)
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
